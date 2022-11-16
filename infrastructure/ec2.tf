@@ -9,7 +9,7 @@ resource "aws_instance" "ec2_public" {
     create_before_destroy = true
   }
 
-  tags = {
-    "Name" = "EC2 WEB - ${var.app_name}"
-  }
+  tags = merge(local.common_tags, {
+    "Name" = "${var.app_name}-ec2"
+  })
 }
