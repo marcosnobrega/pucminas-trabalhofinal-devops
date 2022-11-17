@@ -10,6 +10,6 @@ resource "aws_instance" "ec2_public" {
   }
 
   tags = merge(local.common_tags, {
-    "Name" = "${var.app_name}-ec2"
+    Name = "${local.prefix}-ec2"
   })
 }

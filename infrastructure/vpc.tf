@@ -4,7 +4,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
 
   tags = merge(local.common_tags, {
-    Name = "${var.app_name}-vpc"
+    Name = "${local.prefix}-vpc"
   })
 }
 
@@ -12,7 +12,7 @@ resource "aws_internet_gateway" "internet-gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = merge(local.common_tags, {
-    Name = "${var.app_name}-ig"
+    Name = "${local.prefix}-ig"
   })
 }
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "public-subnet" {
   map_public_ip_on_launch = true
 
   tags = merge(local.common_tags, {
-    Name = "${var.app_name}-subnet"
+    Name = "${local.prefix}-subnet"
   })
 }
 
@@ -39,7 +39,7 @@ resource "aws_route_table" "public-route-table" {
   }
 
   tags = merge(local.common_tags, {
-    Name = "${var.app_name}-rt"
+    Name = "${local.prefix}-rt"
   })
 }
 

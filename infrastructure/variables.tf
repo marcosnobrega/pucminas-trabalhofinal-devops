@@ -19,11 +19,6 @@ variable "vpc_cidr" {
   description = "CIDR para criar a VPC"
 }
 
-variable "private_subnet_cidr" {
-  type        = string
-  description = "CIDR para criar a Subnet privada"
-}
-
 variable "public_subnet_cidr" {
   type        = string
   description = "CIDR para criar a subnet pública"
