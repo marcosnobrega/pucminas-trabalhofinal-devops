@@ -1,7 +1,7 @@
-resource "aws_security_group" "webserver-security-group" {
+resource "aws_security_group" "webserver" {
   name        = "Web Server Security Group"
   description = "Enable HTTP/HTTPS access on Port 80/443"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = aws_vpc.this.id
 
   ingress {
     description = "HTTP Access"
@@ -30,17 +30,17 @@ resource "aws_security_group" "webserver-security-group" {
   })
 }
 
-resource "aws_security_group" "efs-security-group" {
+resource "aws_security_group" "efs" {
   name        = "EFS Security Group"
   description = "Enable access to the EFS"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = aws_vpc.this.id
 
   ingress {
     description     = "SSH Access"
     from_port       = 2049
     to_port         = 2049
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.webserver-security-group.id}"]
+    security_groups = ["${aws_security_group.webserver.id}"]
   }
 
   egress {

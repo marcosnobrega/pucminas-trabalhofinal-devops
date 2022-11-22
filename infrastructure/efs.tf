@@ -6,6 +6,6 @@ resource "aws_efs_file_system" "this" {
 
 resource "aws_efs_mount_target" "this" {
   file_system_id  = aws_efs_file_system.this.id
-  subnet_id       = aws_subnet.public-subnet.id
-  security_groups = ["${aws_security_group.efs-security-group.id}"]
+  subnet_id       = aws_subnet.this.id
+  security_groups = ["${aws_security_group.efs.id}"]
 }
